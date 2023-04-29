@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import MikePhoto from "../../img/m101.jpg";
+import propTypes from "prop-types";
 
 export const ContactCard = props => {
 	const [state, setState] = useState({
@@ -23,7 +24,9 @@ export const ContactCard = props => {
 							<i className="fas fa-trash-alt" />
 						</button>
 					</div>
-					<label className="name lead">Mike Anamendolla</label>
+					<label className="name lead">
+						{props.nombre} {props.apellido}
+					</label>
 					<br />
 					<i className="fas fa-map-marker-alt text-muted mr-3" />
 					<span className="text-muted">5842 Hillcrest Rd</span>
@@ -55,7 +58,9 @@ export const ContactCard = props => {
  **/
 ContactCard.propTypes = {
 	history: PropTypes.object,
-	onDelete: PropTypes.func
+	onDelete: PropTypes.func,
+	nombre: PropTypes.string,
+	apellido: PropTypes.string
 };
 
 /**
