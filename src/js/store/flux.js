@@ -4,16 +4,22 @@ const getState = ({ getStore, setStore }) => {
 			//Your data structures, A.K.A Entities
 			contacts: [
 				{
-					nombre: "Carlos",
-					apellido: "D'Lacoste"
+					name: "Carlos D'Lacoste",
+					email: "cdlacostesalazar@gmail.com",
+					phone: "+58 555555555",
+					address: "El Marques"
 				},
 				{
-					nombre: "Mariana",
-					apellido: "Arrieche"
+					name: "Mariana Arrieche",
+					email: "marianita@gmail.com",
+					phone: "+58 444444444",
+					address: "Los Naranjos"
 				},
 				{
-					nombre: "Alexander",
-					apellido: "De Matteo"
+					name: "Alexander De Matteo",
+					email: "alexdematteo@gmail.com",
+					phone: "+58 777777777",
+					address: "Los Palos Grandes"
 				}
 			]
 		},
@@ -21,7 +27,9 @@ const getState = ({ getStore, setStore }) => {
 			//(Arrow) Functions that update the Store
 			// Remember to use the scope: scope.state.store & scope.setState()
 			newContact: newItem => {
-				console.log(newItem);
+				// console.log(newItem);
+				const auxStore = getStore();
+				setStore({ contacts: [...auxStore.contacts, newItem] });
 			}
 		}
 	};
