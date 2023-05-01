@@ -30,6 +30,11 @@ const getState = ({ getStore, setStore }) => {
 				// console.log(newItem);
 				const auxStore = getStore();
 				setStore({ contacts: [...auxStore.contacts, newItem] });
+			},
+
+			removeContact: targetContact => {
+				const store = getStore();
+				setStore({ contacts: [store.contacts.filter(contact => contact.id != targetContact.id)] });
 			}
 		}
 	};
