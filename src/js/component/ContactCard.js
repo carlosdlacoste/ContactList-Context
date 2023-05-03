@@ -2,10 +2,12 @@ import React, { useState, useEffect } from "react";
 import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import MikePhoto from "../../img/m101.jpg";
+import { Modal } from "../component/Modal.js";
 
 export const ContactCard = props => {
 	const [state, setState] = useState({
 		//initialize state here
+		showModal: false
 	});
 
 	return (
@@ -19,7 +21,7 @@ export const ContactCard = props => {
 						<button className="btn">
 							<i className="fas fa-pencil-alt mr-3" />
 						</button>
-						<button className="btn" onClick={() => props.onDelete()}>
+						<button className="btn" onClick={() => setState({ showModal: true })}>
 							<i className="fas fa-trash-alt" />
 						</button>
 					</div>
@@ -45,6 +47,7 @@ export const ContactCard = props => {
 					<span className="text-muted small text-truncate">{props.email}</span>
 				</div>
 			</div>
+			<Modal show={state.showModal} onClose={() => setState({ showModal: false })} item={props.item} />
 		</li>
 	);
 };
@@ -59,7 +62,8 @@ ContactCard.propTypes = {
 	name: PropTypes.string,
 	address: PropTypes.string,
 	phone: PropTypes.string,
-	email: PropTypes.string
+	email: PropTypes.string,
+	item: PropTypes.object
 };
 
 /**
