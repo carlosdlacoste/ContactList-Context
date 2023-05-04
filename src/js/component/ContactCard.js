@@ -3,10 +3,15 @@ import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import MikePhoto from "../../img/m101.jpg";
 import { Modal } from "../component/Modal.js";
+import { ModalEditContact } from "../component/ModalEditContact.js";
 
 export const ContactCard = props => {
 	const [state, setState] = useState({
 		//initialize state here
+		showModal: false
+	});
+
+	const [editState, setEditState] = useState({
 		showModal: false
 	});
 
@@ -18,7 +23,7 @@ export const ContactCard = props => {
 				</div>
 				<div className="col-12 col-sm-6 col-md-9 text-center text-sm-left">
 					<div className=" float-right">
-						<button className="btn">
+						<button className="btn" onClick={() => setEditState({ showModal: true })}>
 							<i className="fas fa-pencil-alt mr-3" />
 						</button>
 						<button className="btn" onClick={() => setState({ showModal: true })}>
@@ -47,6 +52,11 @@ export const ContactCard = props => {
 					<span className="text-muted small text-truncate">{props.email}</span>
 				</div>
 			</div>
+			<ModalEditContact
+				show={editState.showModal}
+				onClose={() => setEditState({ showModal: false })}
+				item={props.item}
+			/>
 			<Modal show={state.showModal} onClose={() => setState({ showModal: false })} item={props.item} />
 		</li>
 	);

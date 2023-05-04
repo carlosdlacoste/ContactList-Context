@@ -42,6 +42,19 @@ const getState = ({ getStore, setStore }) => {
 			removeContact: targetContact => {
 				const store = getStore();
 				setStore({ contacts: store.contacts.filter(contact => contact.id != targetContact.id) });
+			},
+
+			editContact: (targetContact, id) => {
+				console.log(targetContact);
+				const store = getStore();
+				const auxContact = store.contacts.find(item => item.id == id);
+				if (auxContact) {
+					auxContact.name = targetContact.name;
+					auxContact.email = targetContact.email;
+					auxContact.phone = targetContact.phone;
+					auxContact.address = targetContact.address;
+					setStore({ contacts: store.contacts });
+				}
 			}
 		}
 	};
